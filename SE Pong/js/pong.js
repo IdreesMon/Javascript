@@ -15,9 +15,14 @@ var fy = .97
 //1.Declare an array called Player
 let player =[];
 
+//SCORING
+
+
+
+
 //2.Add a new Player() to the 0 and 1 indexes
-player[0] = new Player();
-player[1] = new Player();
+player[0] = new Player("p1");
+player[1] = new Player("p2");
 
 
 //3.Give the players a paddle by setting the pad property to new Box();
@@ -53,8 +58,8 @@ ball.vx = -3
 ball.vy = -3
 ball.color = 'white'
 
-
 //3.Change all paddle refrences to pad[0]/pad[1]
+
 
 function main()
 {
@@ -92,6 +97,7 @@ function main()
     //ball movement
     ball.move();
 
+
     //p1 collision
     if(pad[0].y < 0+pad[0].h/2)
     {
@@ -116,24 +122,32 @@ function main()
     //ball collision 
     if(ball.x < 0)
     {
+        player[1].score++
+        player[1].updateScore()
         ball.x = c.width/2
         ball.y  =c.height/2
     }
-    if(ball.x > c.width)
+
+    if(ball.x >= c.width)
     {
-        ball.x = c.width
-        ball.vx = -ball.vx
+        player[0].score++
+        player[0].updateScore()
+        ball.x = c.width/2
+        ball.y  =c.height/2
+        // ball.x = c.width
+        // ball.vx = -ball.vx
     }
+
     if(ball.y < 0)
     {
         ball.y = 0
         ball.vy = -ball.vy
     }
+
     if(ball.y > c.height)
     {
         ball.y = c.height
         ball.vy = -ball.vy
-       
     }
 
     //p1 with ball collision
@@ -151,6 +165,7 @@ function main()
 
     }
 
+    
     //draw the objects
     pad[0].draw();
     pad[1].draw();
@@ -158,3 +173,4 @@ function main()
 
     
 }
+

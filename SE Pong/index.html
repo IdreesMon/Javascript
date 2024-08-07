@@ -10,7 +10,11 @@
 <body>
 <div id="gameContainer">
     <canvas id="pong" width="600" height="600"></canvas>
-    <div id="scoreText">0 : 0</div>
+    <div id="scoreText">
+        <span id="p1_score">0</span>
+        :
+        <span id="p2_score">0</span>
+    </div>
     <button id="resetBtn">Reset</button>
     <script src="js/players.js"></script>
     <script src="js/Box.js"></script>
