@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input type="range" min="0" max="225" value="0">
+        <input type="number" min="0" max="225" value="0">
+        <input type="range" min="0" max="225" value="0">
+        <input type="number" min="0" max="225" value="0">
+        <input type="range" min="0" max="225" value="0">
+        <input type="number" min="0" max="225" value="0">
+        <input type="color">
+        <input type="checkbox" name="check" value="0">
+        <input type="checkbox" name="check" value="0">
+        <input type="checkbox" name="check" value="0">
+        <select>
+            <option>red</option>
+            <option>green</option>
+            <option>blue</option>
+        </select>
+
+        <input type="button" value="this is a button">
+        <button>This is also a button</button>
+
+    </form>
+    <script>
+
+        let slider = Array.from(document.querySelectorAll(`input[type="range"]`))
+        let number = Array.from(document.querySelectorAll(`input[type="number"]`))
+        let color = document.querySelector(`input[type="color"]`)
+        let check = Array.from(document.querySelectorAll(`input type="checkbox"]`))
+
+        let select = document.querySelector(`select`)
+
+        update()
+
+        select.addEventListener(`input`, e => {
+            document.querySelector(`body`).style.backgroundColor = e.target.value
+
+        })
+
+        check.forEach((i, index) => {
+            i.addEventListener(`input`, e => {
+                if (i.checked) i.value = `255`
+                else i.value = 0
+                document.querySelector(`body`).style.backgroundColor = `rgb(${check[0].value}, ${check[1].value}, ${check[2].value})`
+            })
+        })
+
+        color.addEventListener(`input`, e => {
+            document.querySelector(`body`).style.backgroundColor
+            var pattern = /\d{1,3}/g
+            var colorArray = colors.match(pattern)
+            console.log(colorArray)
+            colorArray.forEach((i, index) => {
+                slider[index].value = i
+                number[index].value = i
+            })
+        })
+
+        slider.forEach((i, index) => {
+            i.nextElementSibling.value = i.value
+            color.value = `rgb(255,0,0)`
+            update()
+        })
+
+
+        number.forEach((i, index) => {
+            i.addEventListener(`input`, e => {
+                slider[index].value = i.value
+                update()
+            })
+        })
+
+        function update(element = `body`) {
+            document.querySelector(element).style.backgroundColor = (`rgb(${slider[0].value}, ${slider[1].value}, ${slider[2].value})`)
+        }
+
+
+
+
+
+        // function  q(element) 
+        // {
+        //     var stuff = document.queryselectorall(elemeny)
+        //     if(stuff.length == 1) return stuff[0]
+
+        //     return stuff
+        // }
+
+        // q(`p`,1)[0].style.color = `red`
+
+
+        // function add(a,b)
+        // {
+        //     return a + b
+        // }
+
+        // q(`p`)[0].innerHTML = add(`bob`, `the builder`)
+
+
+        // function add(obj={}){
+        //     var params = {
+        //         a:5,
+        //         b:5,
+        //         c:5
+        //     }
+
+        //     for(let i in obj)
+        //     {
+        //         params[i] = obj[i]
+
+        //     }
+        //     return params.a + params.b + params.c
+        // }
+
+        // q(`p`)[0].innerHTML = add({c:idrees})
+
+
+
+
+    </script>
+</body>
+
+</html>

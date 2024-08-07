@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <form action="#" method="GET"> <!--GET - GETTING DATA FROM SERVER // POST-->
+            <input type="text" placeholder="content" value="Idrees" name="soda">
+            <input type="submit">
+
+        </form>
+    
+    <script>
+
+        
+        var soda = document.querySelector(`input[name="soda"]`) //a way to select things in order not to give an ID on top of an name
+        soda.addEventListener(`focus`, (e)=> {e.target.style.backgroundColor=`yellow`})
+
+        soda.addEventListener(`input`, (e)=>{e.target.value.backgroundColor +=`Mr t`})
+
+        soda.addEventListener(`change`, (e)=>{e.target.style.backgroundColor=`white`})
+
+
+
+
+    </script>
+
+    
+
+
+
+    
+</body>
+</html>

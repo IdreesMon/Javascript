@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p onclick="changeColor('blue')">WORDS</p>
+    <script>
+
+        let p = document.querySelectorAll(`p`)
+        let colors = [`red`, `green`]
+
+        //function add(a=0,b=0,output=function)
+
+
+        p[i].addEventListener(`click`,
+            function(e){
+                e.tagret.style.colors
+            }
+        )
+        
+        // let p = document.querySelector(`p`)
+
+        // var add = (a,b) => {return a + b} 
+
+        // p.innerText = add(5,5)
+
+        // p.addEventListener(`click`, junk)
+
+        // function junk(e){
+        //     e.target.innerText+=add(Number(e.target.innerText), Number(p.removeEventListener(`click`,junk)))
+        // }
+
+        //p.addEventListener(`click`, add, function(e){}); //we dont need to mention the () because if so it would trigger the function immediately. instead we just place the var as a refrence 
+        //callback function, when everything is done this function runs
+
+        // function changeColor()
+        // {
+        //     p.style.color = `red`
+        // }
+
+        // //Event Handler
+        // // p.onmouseover = function(e) 
+        // // {
+        // //     this.style.fontweight = `bold`
+        // // }
+
+        // p.onmouseover = function(e)
+        // {
+        //     this.style.fontweight = `bold`
+        // }
+
+        // p.onmouseout = (e)=>
+        // {       //if dont want to mention a function you can "e.tagret" the element 
+        //     e.target.style.fontweight = `normal`
+            
+        // }
+
+
+        //the target is the element being accessed. The current target is the parent of that child element
+
+        var add = (a,b) => {return a + b} //if one paramter no paranthesis is needed, not more than one line of code curly braces arent needed, if one result then a return isnt needed
+
+        p.innerText = add (5,5)
+
+
+    </script>
+    
+</body>
+</html>

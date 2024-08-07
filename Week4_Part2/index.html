@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p data-age="26">Idrees Montequiu</p>
+
+    <script>
+
+        var p = document.querySelector(`p`)
+
+        p.addEventListener(`click`, e =>{
+            window.location = `farts.html?age=${e.target.dataset.age}`
+        })
+
+        alert(p.dataset.age)
+
+
+        // (function junk(){
+        //     p.innerHTML = `hi`
+        // })() /*calls the function itself immeditaely*/
+
+
+        // function bob()
+        // {
+
+        //     var x = 0
+        //     return function()
+        //     {
+        //         x +=2
+        //         return x;
+
+        //     };
+        // }
+        // var myFunc = bob();
+        
+
+
+    </script>
+    
+    
+</body>
+</html>

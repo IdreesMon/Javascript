@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+       
+        var p = document.querySelector(`p`)
+
+        var date = new Date();
+        p.innerHTML = date //.FullYear() //.getDay() //.getTime
+    
+
+        var dudes  = 
+        [
+            {pre: 'Sr', f: `I`, l: `A`, m:`J`, suf:`the 3rd`},
+            {f:`B`, l:`b`, m:`b`},
+
+        ]
+
+
+        var div = document.querySelector(`div`)
+        var message = ``;
+
+        //LOOPS THRU OBJECT
+
+        for(let i=0;i<dudes.length; i++){
+            message += `<p>`;
+                //LOOP THRU ALL OF DATA AND ALL INSIDE
+            for(let key in dudes[i])
+                {
+                    message +=  `${dudes[i].f} ${dudes[i].l}`
+                }
+            message += `<p>`;
+            }
+
+
+
+             var time2 = 0
+             var timer2 = setInterval(timeout2, 1000)
+             function timeout2()
+             {
+                time2++;
+
+             }
+
+
+
+
+            <div class="type-8 cycle-9"> Hello<b>idrees</b>. wassup <i>yerr</i>
+
+
+
+             
+    </script>
+    
+</body>
+</html>
