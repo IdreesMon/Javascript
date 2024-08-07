@@ -2,24 +2,45 @@
 var c = document.querySelector(`#pong`)
 var ctx = c.getContext(`2d`)
 
+
 //timer to make the game run at 60fps
 var timer = setInterval(main, 1000/60)
 
 //global friction variable
 var fy = .97
 
+
+//WEEK 2 Creating the Players//
+
+//1.Declare an array called Player
+let player =[];
+//2.Add a new Player() to the 0 and 1 indexes
+player[0] = new Player();
+player[1] = new Player();
+
+
+//3.Give the players a paddle by setting the pad property to new Box();
+player[0].pad = new Box();
+player[1].pad = new Box();
+
+
+//WEEK 2 Creating an Array for the Paddles//
+
+//1.Add a new array called pad to the game
+let pad = [player[0].pad, player[1].pad];
+
 //p1 setup
-var p1 = new Box();
-p1.w = 20
-p1.h = 150
-p1.x = 0 + p1.w/2
+pad[0].w = 20
+pad[0].h = 150
+pad[0].x = 0 + pad[0].w / 2
+pad[0].color = 'green'
 
 //p2 setup
-var p2 = new Box();
-p2.w = 20
-p2.h = 150
-p2.x = c.width - p2.w/2 
-p2.color = `red`
+
+pad[1].w = 20
+pad[1].h = 150
+pad[1].x = c.width - pad[1].w/2 
+pad[1].color = 'blue'
 
 //ball setup
 var ball = new Box();
@@ -27,20 +48,8 @@ ball.w = 20
 ball.h = 20
 ball.vx = -3
 ball.vy = -3
-ball.color = `white`
+ball.color = 'white'
 
-//WEEK 2 Creating the Players//
-
-//1.Declare an array called Player
-let player =[]
-
-//2.Add a new Player() to the 0 and 1 indexes
-player[0] = new Player();
-player[1] = new Player();
-
-//3.Give the players a paddle by setting the pad property to new Box();
-player[0].pad = new Box();
-player[1].pad = new Box();
 
 
 
@@ -52,50 +61,51 @@ function main()
     //p1 accelerates when key is pressed 
     if(keys[`w`])
     {
-       p1.vy += -p1.force
+       pad[0].vy += -pad[0].force
     }
 
     if(keys[`s`])
     {
-        p1.vy += p1.force
+        pad[0].vy += pad[0].force
     }
     //p2 accelerates when key is pressed
     if(keys[`o`])
     {
-        p2.vy += -p2.force
+        pad[1].vy += -pad[1].force
     }
 
     if(keys[`p`])
     {
-        p2.vy += p2.force
+        pad[1].vy += pad[1].force
     }
     //applies friction
-    p1.vy *= fy
-    p2.vy *= fy
+    pad[0].vy *= fy;
+    pad[1].vy *= fy;
+
     //player movement
-    p1.move();
-    p2.move();
+    pad[0].move();
+    pad[1].move();
 
     //ball movement
-    ball.move()
+    ball.move();
 
     //p1 collision
-    if(p1.y < 0+p1.h/2)
+    if(pad[0].y < 0+pad[0].h/2)
     {
-        p1.y = 0+p1.h/2
+        pad[0].y = 0+pad[0].h/2
     }
-    if(p1.y > c.height-p1.h/2)
+    if(pad[0].y > c.height-pad[0].h/2)
     {
-        p1.y = c.height-p1.h/2
+        pad[0].y = c.height-pad[0].h/2
     }
     //p2 collision 
-    if(p2.y < 0+p2.h/2)
+    if(pad[1].y < 0+pad[1].h/2)
     {
-        p2.y = 0+p2.h/2
+        pad[1].y = 0+pad[1].h/2
     }
-    if(p2.y > c.height-p2.h/2)
+    if(pad[1].y > c.height-pad[1].h/2)
     {
-        p2.y = c.height-p2.h/2
+        pad[1].y = c.height-pad[1].h/2
     }
      
 
@@ -124,24 +134,24 @@ function main()
     }
 
     //p1 with ball collision
-    if(ball.collide(p1))
+    if(ball.collide(pad[0]))
     {
-        ball.x = p1.x + p1.w/2 + ball.w/2
+        ball.x = pad[0].x + pad[0].w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
 
     //p2 with ball collision
-    if(ball.collide(p2))
+    if(ball.collide(pad[1]))
     {
-        ball.x = p2.x - p2.w/2 - ball.w/2
+        ball.x = pad[1].x - pad[1].w/2 - ball.w/2
         ball.vx = -ball.vx;
 
     }
 
     //draw the objects
-    p1.draw()
-    p2.draw()
-    ball.draw()
+    pad[0].draw();
+    pad[1].draw();
+    ball.draw();
 
     
 }
