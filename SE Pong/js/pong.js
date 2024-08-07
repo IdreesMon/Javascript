@@ -29,6 +29,20 @@ ball.vx = -3
 ball.vy = -3
 ball.color = `white`
 
+//WEEK 2 Creating the Players//
+
+//1.Declare an array called Player
+let player =[]
+
+//2.Add a new Player() to the 0 and 1 indexes
+player[0] = new Player();
+player[1] = new Player();
+
+//3.Give the players a paddle by setting the pad property to new Box();
+player[0].pad = new Box();
+player[1].pad = new Box();
+
+
 
 function main()
 {
