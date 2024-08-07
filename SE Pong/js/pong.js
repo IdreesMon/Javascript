@@ -10,10 +10,11 @@ var timer = setInterval(main, 1000/60)
 var fy = .97
 
 
-//WEEK 2 Creating the Players//
+//WEEK 2 - CREATING THE PLAYERS//
 
 //1.Declare an array called Player
 let player =[];
+
 //2.Add a new Player() to the 0 and 1 indexes
 player[0] = new Player();
 player[1] = new Player();
@@ -24,19 +25,21 @@ player[0].pad = new Box();
 player[1].pad = new Box();
 
 
-//WEEK 2 Creating an Array for the Paddles//
+//WEEK 2 - CREATING AN ARRAY FOR THE PADDLES//
 
 //1.Add a new array called pad to the game
 let pad = [player[0].pad, player[1].pad];
 
+//2.store the player's avatar's in the pad array
 //p1 setup
+pad[0] = player[0].pad
 pad[0].w = 20
 pad[0].h = 150
 pad[0].x = 0 + pad[0].w / 2
 pad[0].color = 'green'
 
 //p2 setup
-
+pad[1] = player[1].pad
 pad[1].w = 20
 pad[1].h = 150
 pad[1].x = c.width - pad[1].w/2 
@@ -51,7 +54,7 @@ ball.vy = -3
 ball.color = 'white'
 
 
-
+//3.Change all paddle refrences to pad[0]/pad[1]
 
 function main()
 {
