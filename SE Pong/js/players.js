@@ -1,15 +1,12 @@
 //build class for players
 
-class Player{
-
-    constructor(id)
-    {
-        this.name="idrees";
-        this.score= 0;
-        this.highScore= 0;
-        this.pad=``
-        console.log(id)
-        this.score_count = document.querySelector("#"+id+"_score")
+class Player {
+    constructor(score_count) {
+        this.name = "idrees";
+        this.score = 0;
+        this.highScore = 0;
+        this.pad = ``
+        this.score_count = score_count
         return this;
     }
 
