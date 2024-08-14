@@ -4,6 +4,28 @@
     . show or hide the `.sides` div
 ---------*/
 
+let options_title = document.querySelector(`section#options > h2`)
+let options = document.querySelector(`div.sides`) // .sides or div.sides
+
+function when_h2_is_clicked() {
+    options.classList.toggle("hidden")
+    // actual logic that is happening on `toggle` :)
+    // if (options.classList.contains("hidden")) {
+    //     console.log("class list IS hidden, showing it")
+    //     options.classList.remove("hidden")
+    // } else {
+    //     console.log("class list is SHOWING, hiding it")
+    //     options.classList.add("hidden")
+    // }
+}
+
+options_title.addEventListener(`click`, when_h2_is_clicked)
+// options_title.addEventListener(`click`, () => options.classList.toggle("hidden")) another way of doing this
+// options_title.addEventListener(`click`, () => {
+//     options.classList.toggle("hidden")
+// })
+
+
 /*---------
     Program the two fill inputs to do the following:
     . Display the correct colors on the inputs and outputs and paddles    
