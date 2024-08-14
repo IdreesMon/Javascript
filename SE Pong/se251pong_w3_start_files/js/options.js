@@ -34,7 +34,22 @@ options_title.addEventListener(`click`, when_h2_is_clicked)
         . Change the pad's fill property  to the player's fill property
         . Show the fill's hex code in the output div 
 
+
+        
 -----------*/
+
+document.querySelectorAll(`.op`).forEach((player_settings, i) => {
+    const outputs = player_settings.querySelectorAll(".output");
+    const fill = player_settings.querySelector(".fill");
+    
+    fill.value = player[i].fill;
+    outputs[0].innerHTML = fill.value;
+
+    fill.addEventListener(`input`, (e) => {
+        player[i].pad.fill = e.target.value;
+        outputs[0].innerHTML = e.target.value;
+    })
+})
 
 /*---------
     Program the six key inputs to do the following:
