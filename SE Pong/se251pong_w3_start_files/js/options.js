@@ -49,7 +49,7 @@ document.querySelectorAll(`.op`).forEach((player_settings, i) => {
     outputs[0].innerHTML = fill.value;
     outputs[1].innerHTML = stroke.value;
 
-    stroke.addEventListener(`input` , (e) => {
+    stroke.addEventListener(`input`, (e) => {
         player[i].pad.stroke = e.target.value;
         outputs[1].innerHTML = e.target.value;
 
@@ -87,7 +87,7 @@ uInputs.forEach((input, index) => {
         player = players.player2 
     }
     */
-  
+
     // Set the input's value to the appropriate player's current 'u' key
     input.value = player_item.keys.u.toLowerCase();
 
@@ -95,7 +95,7 @@ uInputs.forEach((input, index) => {
     input.addEventListener('keydown', (event) => {
         // Prevent default behavior to allow custom handling
         event.preventDefault();
-        
+
         // Update the input value with the pressed key
         input.value = event.key;
 
@@ -107,8 +107,8 @@ uInputs.forEach((input, index) => {
         outputDiv.textContent = `New 'u' key: ${player_item.keys.u}`;
     });
 
-    
-        
+
+
 
     // Add a focus event listener to pause the game
     input.addEventListener('focus', () => {
@@ -147,8 +147,8 @@ dInputs.forEach((input, index) => {
         outputDiv.textContent = `New 'd' key: ${player_item.keys.d}`;
     });
 
-    
-        
+
+
 
     // Add a focus event listener to pause the game
     input.addEventListener('focus', () => {
@@ -161,5 +161,44 @@ dInputs.forEach((input, index) => {
     //     // Set game state to pause
     //     currentState = 'game';
     // });
-    });
+});
 
+const ballSizeRange = document.querySelector('#ballSize');
+ballSizeRange.value = o[2].w;
+
+ballSizeRange.addEventListener("input", (e) => {
+    const newSize = e.target.value;
+    o[2].w = newSize;
+    o[2].h = newSize;
+});
+
+const ballColor = document.querySelector(`.ball-color`);
+ballColor.value = o[2].fill
+
+ballColor.addEventListener(`input`, (e) =>{
+    o[2].fill = e.target.value
+    e.target.nextElementSibling.innerHTML = e.target.value;
+});
+
+
+// const ball = {
+//     radius: 20, // default value
+//     // Other ball properties
+// };
+
+// ballSizeInput.addEventListener('input', function () {
+//     ball.radius = parseInt(this.value);
+//     // Update the ball's rendering on the canvas
+//     // You'll need to adjust the drawing logic in your game loop to use ball.radius
+// });
+
+// // In your rendering function
+// function drawBall() {
+//     ctx.beginPath();
+//     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+//     ctx.fillStyle = ball.fillColor; // Use existing color logic
+//     ctx.fill();
+//     ctx.strokeStyle = ball.strokeColor; // Use existing stroke logic
+//     ctx.stroke();
+//     ctx.closePath();
+// }

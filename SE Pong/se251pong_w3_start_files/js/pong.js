@@ -36,7 +36,7 @@ function init()
     o[0] = new Box().setProps(player[0]).setProps({x:10, dir:1});
     o[1] = new Box().setProps(player[1]).setProps({x:c.width-10, dir:-1});
     //ball
-    o[2] = new Box().setProps({w:20, h:20, vx:-2, vy:0, fill:`rgb(255,255,255)`});
+    o[2] = new Box().setProps({w:20, h:20, vx:-2, vy:0, fill:`#ffffff`});
     //goals 1 and 2
     o[3] = new Box().setProps({x:o[0].x + ((c.width +10 ) * o[0].dir), h:c.height, w:20, fill:`green`});
     o[4] = new Box().setProps({x:o[1].x + ((c.width +10 ) * o[1].dir), h:c.height, w:20});
@@ -87,8 +87,6 @@ states[`game`] = function()
         {
             pad[i].vy += -player[i].force;
         }
-
-        console.log(keys[player[1].keys.d])
 
         if(keys[player[i].keys.d])
         {
