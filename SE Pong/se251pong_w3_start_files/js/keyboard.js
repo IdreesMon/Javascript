@@ -2,7 +2,7 @@
 var keys = [];
 
 //keydown code
-document.addEventListener(`keydown`, (e)=>{
+document.addEventListener(`keydown`, (e)=>{ 
     keys[e.key.toLowerCase()]=true;
     console.log(e.key)
 })

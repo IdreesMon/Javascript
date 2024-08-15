@@ -16,7 +16,7 @@ var timer, ball, currentState;
 var scoreBoard;
 var player = [
     new User().setProps({h:150,  force:1, fill:`#ffff00`}),
-    new User().setProps({h:150,  force:1, fill:`#ffff00`, keys:{u:`ArrowUp`, d:`ArrowDown`, s:`ArrowLeft`}})
+    new User().setProps({h:150,  force:1, fill:`#ffff00`, keys:{u:`arrowup`, d:`arrowdown`, s:`arrowleft`}})
 ]
 
 
@@ -67,8 +67,6 @@ states[`pause`] = function(){
 }
 states[`game`] = function()
 {
-
-  
     //ball movement
     ball.move();
 
@@ -89,6 +87,8 @@ states[`game`] = function()
         {
             pad[i].vy += -player[i].force;
         }
+
+        console.log(keys[player[1].keys.d])
 
         if(keys[player[i].keys.d])
         {
