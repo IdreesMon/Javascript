@@ -41,15 +41,25 @@ options_title.addEventListener(`click`, when_h2_is_clicked)
 document.querySelectorAll(`.op`).forEach((player_settings, i) => {
     const outputs = player_settings.querySelectorAll(".output");
     const fill = player_settings.querySelector(".fill");
-    
+    const stroke = player_settings.querySelector(".stroke");
+
     fill.value = player[i].fill;
+    stroke.value = player[i].stroke;
+
     outputs[0].innerHTML = fill.value;
+    outputs[1].innerHTML = stroke.value;
+
+    stroke.addEventListener(`input` , (e) => {
+        player[i].pad.stroke = e.target.value;
+        outputs[1].innerHTML = e.target.value;
+
+    })
 
     fill.addEventListener(`input`, (e) => {
         player[i].pad.fill = e.target.value;
         outputs[0].innerHTML = e.target.value;
     })
-})
+});
 
 /*---------
     Program the six key inputs to do the following:
@@ -77,7 +87,7 @@ uInputs.forEach((input, index) => {
         player = players.player2 
     }
     */
-    
+  
     // Set the input's value to the appropriate player's current 'u' key
     input.value = player_item.keys.u.toLowerCase();
 
@@ -97,6 +107,9 @@ uInputs.forEach((input, index) => {
         outputDiv.textContent = `New 'u' key: ${player_item.keys.u}`;
     });
 
+    
+        
+
     // Add a focus event listener to pause the game
     input.addEventListener('focus', () => {
         // Set game state to pause
@@ -109,4 +122,44 @@ uInputs.forEach((input, index) => {
     //     currentState = 'game';
     // });
 });
+
+const dInputs = document.querySelectorAll('input.d');
+
+
+
+dInputs.forEach((input, index) => {
+    const player_item = player[index];
+
+
+    input.value = player_item.keys.d.toLowerCase();
+
+    input.addEventListener('keydown', (event) => {
+        event.preventDefault();
+
+
+        input.value = event.key;
+
+        // Set the player's 'u' key to the new value
+        player_item.keys.d = event.key.toLowerCase();
+
+        // Display the player's new 'u' key value in the output
+        const outputDiv = input.nextElementSibling;
+        outputDiv.textContent = `New 'd' key: ${player_item.keys.d}`;
+    });
+
+    
+        
+
+    // Add a focus event listener to pause the game
+    input.addEventListener('focus', () => {
+        // Set game state to pause
+        currentState = 'pause';
+    });
+
+    // code in the case that we wanted to have an event for unpausing
+    // input.addEventListener('focusout', () => {
+    //     // Set game state to pause
+    //     currentState = 'game';
+    // });
+    });
 

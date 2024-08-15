@@ -11,4 +11,5 @@ document.addEventListener(`keydown`, (e)=>{
 //keyup code
 document.addEventListener(`keyup`, (e)=>{
     keys[e.key.toLowerCase()]=false;
+    keys
 })
