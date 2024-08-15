@@ -59,3 +59,54 @@ document.querySelectorAll(`.op`).forEach((player_settings, i) => {
         .Change the player's key to the value of the input
         .Show the player's key in the output div 
 -----------*/
+
+// Select all the "u" inputs
+const uInputs = document.querySelectorAll('input.u');
+
+// set the player's u key to equal the new value of the input
+
+// Iterate through the inputs
+uInputs.forEach((input, index) => {
+    const player_item = player[index]; // Assuming first input is for player1, second for player2
+    // const player = index === 0 ? players.player1 : players.player2;
+    // teranary operator to figure out the correct player
+    /* same thing as:
+    if (index === 0) {
+        player = players.player1
+    } else {
+        player = players.player2 
+    }
+    */
+    
+    // Set the input's value to the appropriate player's current 'u' key
+    input.value = player_item.keys.u.toLowerCase();
+
+    // Add a 'keydown' event listener
+    input.addEventListener('keydown', (event) => {
+        // Prevent default behavior to allow custom handling
+        event.preventDefault();
+        
+        // Update the input value with the pressed key
+        input.value = event.key;
+
+        // Set the player's 'u' key to the new value
+        player_item.keys.u = event.key.toLowerCase();
+
+        // Display the player's new 'u' key value in the output
+        const outputDiv = input.nextElementSibling;
+        outputDiv.textContent = `New 'u' key: ${player_item.keys.u}`;
+    });
+
+    // Add a focus event listener to pause the game
+    input.addEventListener('focus', () => {
+        // Set game state to pause
+        currentState = 'pause';
+    });
+
+    // code in the case that we wanted to have an event for unpausing
+    // input.addEventListener('focusout', () => {
+    //     // Set game state to pause
+    //     currentState = 'game';
+    // });
+});
+

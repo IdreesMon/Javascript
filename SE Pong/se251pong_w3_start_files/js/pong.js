@@ -59,7 +59,7 @@ states[`pause`] = function(){
     o.forEach(function (i){
         i.draw()
     })
-    if(keys[`Escape`])
+    if(keys[`escape`])
     {
         currentState =`game`
     }
