@@ -180,6 +180,22 @@ ballColor.addEventListener(`input`, (e) =>{
     e.target.nextElementSibling.innerHTML = e.target.value;
 });
 
+// Iterate through the players
+players.forEach(player => {
+    console.log(`Iterating through ${player.name}`);
+
+    // Iterate through the player's colors
+    player.colors.forEach(color => {
+        console.log(`Color: ${color}`);
+    });
+
+    // Iterate through the player's keys
+    for (let key in player.keys) {
+        console.log(`Key for ${key}: ${player.keys[key]}`);
+    }
+});
+
+
 
 // const ball = {
 //     radius: 20, // default value
