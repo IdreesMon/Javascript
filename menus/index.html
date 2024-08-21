@@ -73,7 +73,14 @@
         newGameButton.addEventListener(`click`, (e) => {
             console.log(`hi`)
             $(`#game-menu`).animate({ opacity: 0 }, 1000, function () {
-                window.location = `pong.html`
+                window.location = `lobby.html`
+            });
+        })
+
+        continueButton.addEventListener(`click`, (e) => {
+            console.log(`continue`)
+            $(`#game-menu`).animate({ opacity: 0 }, 1000, function () {
+                window.location = `lobby.html`
             });
         })
 
