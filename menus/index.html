@@ -30,6 +30,12 @@
     </main>
     <script src="js/User.js"></script>
     <script>
+
+
+        let params = (new URL(document.location)).searchParams;
+        let name = params.get("load");
+        alert(name);  // This will alert 'true' if the URL contains '?load=true'
+   
         var menus = document.querySelector(`#menus`);
 
         // start menu
@@ -108,7 +114,13 @@
         // highScores.setAttribute(`id`, `high-scores`);
 
         var timer = setTimeout(loadStartMenu, 1000);
+
+        
     </script>
+
+    
+
+
 </body>
 
 </html>

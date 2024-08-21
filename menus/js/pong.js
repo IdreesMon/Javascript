@@ -22,6 +22,7 @@ var player = [
 
 init();
 
+
 //Main Game Loop
 function main()
 {
