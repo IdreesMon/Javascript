@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,14 +11,15 @@
     <link rel="stylesheet" href="css/hs.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
+
 <body>
     <nav><a href="index.html">HOME</a></nav>
     <main>
         <section class="blank"></section>
         <section id="content">
             <div id="menus">
-            <h2>HIGH SCORES</h2>
-            <!-- This is what your final html will look like
+                <h2>HIGH SCORES</h2>
+                <!-- This is what your final html will look like
                 <div id="high-scores">
                     //scores go here.
                 </div>
@@ -28,26 +30,27 @@
     </main>
     <script>
         var highScoreList = [
-            {name:`aaa`, score:1000},
-            {name:`bbb`, score:980}
+            { name: `aaa`, score: 1000 },
+            { name: `bbb`, score: 980 }
         ]
-        
-        //
+
+        let message = ""
         var menus = document.querySelector(`#menus`);
-
+        const highScores = document.createElement("div")
+        highScores.setAttribute("id", "high-scores")
         
-       
+        highScoreList.forEach((hs) => {
+            for (let k in hs) {
+                message += `${k}: ${hs[k]} `
+            }
+            message += "<br>"
+        })
 
-     
-
-
-
-      
-        
-
-
-        
-
-    </script>
+        const el = document.createElement("p");
+        el.innerHTML = message;
+        highScores.appendChild(el)
+        menus.appendChild(highScores)
+</script>
 </body>
+
 </html>

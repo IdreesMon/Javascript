@@ -6,12 +6,13 @@ var o = [];
 var pad = [];
 var g = [];
 var goals = [];
+//create a variable called message that stores and empty string
 var sides = {
-        top: c.height/2 + (c.height/2 * -1), 
-        right: c.width/2 + (c.width/2 * 1), 
-        bottom: c.height/2 + (c.height/2 * 1), 
-        left: c.width/2 + (c.width/2 * -1)
-    };
+    top: c.height/2 + (c.height/2 * -1), 
+    right: c.width/2 + (c.width/2 * 1), 
+    bottom: c.height/2 + (c.height/2 * 1), 
+    left: c.width/2 + (c.width/2 * -1)
+};
 var timer, ball, currentState;
 var scoreBoard;
 var player = [
