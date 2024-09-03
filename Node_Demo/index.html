@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Idrees' Page</h2>
+    <input type="text" placeholder="first">
+    <input type="text" placeholder="last">
+    <button>Submit</button>
+
+    <script>
+        // (async function()
+        // {
+        //     let data = await fetch(`http://localhost:3000/data`)
+        //     data = await data.json()
+        //     console.log(data)
+
+        // })()
+
+            //select vars
+        var input = document.querySelectorAll(`input`)
+        var butt = document.querySelector(`button`)
+
+            //make buttons clickable through event listener
+
+        butt.addEventListener(`click`, async (e)=>{
+            var person = {f:input[0].value, l:input[1].value}
+            //console.log(person)
+            fetch(`http://localhost:3000/data`, {
+                method:"POST",
+                body:JSON.stringify(person),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+        })
+        
+    </script>
+    
+</body>
+</html>

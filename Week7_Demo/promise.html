@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // fetch('https://swapi.dev/api/planets/1') //1st argument 
+        // .then((data)=>data.json()) //fetch returns a promise
+        // .then((data)=>{
+        //     console.log(data);
+        //     var body = document.querySelector(`body`);
+        //     body.innerHTML += `<p>${data}</p>`
+
+
+        //     // doing it this way forces you to have to do the actions within the function nested within the .then
+        
+        
+        // })
+
+        async function getit()
+        {
+            var data = await fetch('https://swapi.dev/api/planets/1') 
+            data  =  await data.json()
+            console.log(data)
+
+            var body = document.querySelector(`body`);
+            body.innerHTML += `<p>${data.name}</p>`
+        }
+
+
+
+        button.addEventlistener(`click`, async (e)=>{
+            var data = await fetch('https://swapi.dev/api/planets/1') 
+            data  =  await data.json()
+            console.log(data)
+
+            var body = document.querySelector(`body`);
+            body.innerHTML += `<p>${data.name}</p>`
+
+        })
+    </script>
+</body>
+</html>
