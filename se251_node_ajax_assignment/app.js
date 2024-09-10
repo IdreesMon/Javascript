@@ -53,11 +53,39 @@ app.post('/jeep', async (req, res) => { //sort then splice out the one with the 
     res.send(jsonString);
 });
 
-app.post('/delete', async (req, res) => { 
-  //add the delete functionality here.
-  //read in the jeep.json file
-  //splice out the correct index from the array
-  //write the file again
+app.post('/delete', async (req, res) => {
+  try {
+      // Read in the current data
+      var oldData = await readFile('./data/jeep.json');
+      var newData = await JSON.parse(oldData);
+
+      // The index to delete comes from req.body.index
+      const indexToDelete = req.body.index;
+
+      // Check if the index is valid
+      if (indexToDelete >= 0 && indexToDelete < newData.length) {
+          // Remove the item at the specified index
+          newData.splice(indexToDelete, 1);
+
+          // Write the updated data back to the file
+          const jsonString = JSON.stringify(newData);
+          await fs.writeFile('./data/jeep.json', jsonString, (err) => {
+              if (err) {
+                  console.log('Error writing file', err);
+              } else {
+                  console.log('Successfully updated file');
+              }
+          });
+
+          // Send back success response
+          res.status(200).send(jsonString);
+      } else {
+          res.status(400).send({ error: 'Invalid index' });
+      }
+  } catch (err) {
+      console.error('Error in /delete route', err);
+      res.status(500).send({ error: 'Server error' });
+  }
 });
 
 //Start up the server on port 3000.

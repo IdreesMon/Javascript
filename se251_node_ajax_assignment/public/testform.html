@@ -1,95 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
-        <input type="text" name="make" value="Chevy"><br>
-        <input type="text" name="model" value="Corvette"><br>
-        <input type="number" name="year" maxlength="4" value="2010"><br>
-        <button>Submit</button>
-  
-    <div id="output">
+    <input type="text" name="make" value="Chevy"><br>
+    <input type="text" name="model" value="Corvette"><br>
+    <input type="number" name="year" maxlength="4" value="2010"><br>
+    <button>Submit</button>
 
-    </div>
-    <script>
+    <div id="output"></div>
 
-    window.addEventListener(`load`, load)
+<script>
+    window.addEventListener('load', load);
 
-    //when page loads, its calls the load function below
+    async function load() {
+        var data = await fetch("http://localhost:80/jeep");
+        var jsonData = await data.json();
+        var output = document.querySelector('#output');
+        var message = "";
 
+        jsonData.forEach((item, i) => {
+            message += `<div class="item">
+                            <p>Make: ${item.make}, Model: ${item.model}, Year: ${item.year}</p>
+                            <button class="delete">Delete</button>
+                        </div>`;
+        });
 
-    async function load(e){
-        var promise = await fetch("http://localhost:80/jeep");
-        var data = await promise.json(data) //once data is retrieved from the server, it is stored in the data variable
-        let sortedData = data.sort((a, b) => (b.year - a.year)); //sorts the data by year in descending order
-        console.log(sortedData)
+        output.innerHTML = message;
 
-        var output = document.querySelector(`#output`);
-        var message =``
-        for(let i=0; i<data.length; i++)
-        {
-            message += `<div class="item">`
-                for(let prop in data[i])
-                {
-                    message += `<p>${prop}:${data[i][prop]}</p>`
-                }
+        // Add the delete functionality
+        var del = Array.from(document.querySelectorAll('.delete')); // Select all delete buttons
 
-            message+= `<button class="delete">delete<button>`
-            message += `</div><hr>`
+        for (let i = 0; i < del.length; i++) {
+            del[i].addEventListener('click', async (e) => {
+                const index = i; // Get the correct index
+                console.log("Deleting item at index:", index);
+
+                // Send the delete request to the server
+                await fetch("http://localhost:80/delete", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ index: index }),
+                });
+
+                // Reload the data to reflect the deleted item
+                load();
+            });
         }
-
-        output.innerHTML = message
-
-        var del = Array.from (document.querySelectorAll(`.delete`)) //using query selector all returns node list not an array, there for Array.from
-
-        for(let i=0;i<del.length;i++)
-        {
-            del[i].addEventListener(`click`,(e)=>{
-            //console.log(del.indexOf(e.target))
-            console.log(i)
-            })
-
-        }
-
-
-
-        //query select all the buttons
-        //add event listeners to each button
-            //send the index number of the button you selected to the `delete` route
-            //the object you send could look like this {index:/*correct index number goes here*/}
-            //call the load function to update the page
-
     }
 
-
-    document.querySelector(`button`).addEventListener(`click`, async (e)=>{
-
-       await fetch("http://localhost:80/jeep", {
-    
-            // Adding method type
-            method: "POST",
-            
-            // Adding body or contents to send
-            body: JSON.stringify({
-                make: document.querySelector(`input[name="make"]`).value,
-                model: document.querySelector(`input[name="model"]`).value,
-                year: document.querySelector(`input[name="year"]`).value
-            }),
-            
-            // Adding headers to the request
+    // Event listener for adding new entries
+    document.querySelector('button').addEventListener('click', async (e) => {
+        await fetch("http://localhost:80/jeep", {
+            method: 'POST',
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                make: document.querySelector('input[name="make"]').value,
+                model: document.querySelector('input[name="model"]').value,
+                year: document.querySelector('input[name="year"]').value,
+            }),
+        });
+        load(); // Reload the data after adding a new entry
+    });
+</script>
 
-        load()
-    })    
-   
-    </script>
 </body>
+
 </html>
