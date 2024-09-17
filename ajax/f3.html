@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1</title>
+    <style>
+        .basic {
+            border: 1px solid black;
+
+        }
+
+        .message {
+            border: 1px solid black;
+            ;
+            color: red;
+            padding: 20px;
+            margin: 0 0 10px 0;
+        }
+
+        .table {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: min-content auto;
+            grid-gap: 10px;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+    </main>
+    <script>
+        var messages = [`Hi`, `Hello`, `Goodbye`];
+
+        let counter = 0
+        const config = {
+            tag: "div",
+            id: "m",
+            class: "message",
+            parent: "main",
+        }
+
+        function addMessage(message, obj) {
+            /** @type {HTMLElement} */
+            const element = document.createElement(obj.tag)
+            element.setAttribute("id", `${obj.id}${counter}`)
+            element.setAttribute("class", obj.class)
+            counter++
+
+            const textNode = document.createTextNode(message)
+            element.appendChild(textNode)
+
+            const parent = document.querySelector(obj.parent)
+            parent.appendChild(element)
+
+            return element
+        }
+
+        for (const message of messages) {
+            addMessage(message, config)
+        }
+
+        /* PART 1 | Declare variables
+            create a `counter` variable that equals 0 
+ 
+            create an object called `config` with the following properties
+            * tag = `div`
+            * id = `m`
+            * class = `message`
+            * parent = `main`
+        */
+
+
+        /*  PART 2
+            create a function called addMessage with two parameters:
+            * message=`` 
+            * obj={tag:`p`, id:`p`, class:`basic`, parent:`body`} which will accept the object
+            * 
+            The function will do the following:
+                Declare var element
+                Create an element based on the passed in object's tag name and store it in the `element` variable
+                Set the element's id attribute to equal the passed in object's id + the counter using the setAttribute function 
+                the result would be elements with id's named m0, m1, m2, etc.
+                Increment the counter
+                Set the element's class to equal the passed in object's class using the setAttribute method
+                Create a text node using the message argument 
+                append the text to the element
+                select the element named in the passed in objects parent property.
+                append the element to the passed in object's parent property
+                return the element
+        */
+
+        /*
+            Loop through the messages
+                for each message
+                call the addMessage function 
+                * pass in the current message
+                * pass in the config object
+            The result will be 3 divs with "Hi", "Hello", and "Goodbye"
+            They will also include data automatically inserted by the function below.
+        */
+
+        /*---------------------DO NOT DELETE-----------------------------*/
+        (function display(list) { list.forEach(index => { index.innerHTML += `<div class="table"><div><b>id:</b></div><div>${index.id}</div><div><b>class:</b></div><div>${index.classList[0]}</div></div>` }) })(document.querySelectorAll(`.message`));
+
+    </script>
+</body>
+
+</html>

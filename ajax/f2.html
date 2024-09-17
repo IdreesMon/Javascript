@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1</title>
+    <style>
+        .output {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 64px;
+            font-weight: bold;
+            display: none;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: minmax(100px, max-content) auto;
+            grid-template-rows: min-content;
+        }
+
+        button {
+            margin-top: 30px;
+        }
+
+        label {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label for="city">City</label>
+        <input type="text" name="city" id="city" disabled>
+        <label for="state">State</label>
+        <input type="text" name="state" id="state" disabled>
+        <label for="zip">What is your zip?</label>
+        <input type="number" name="zip" id="zip" placeholder="02711" maxlength="5">
+        <input type="button" value="submit">
+    </form>
+    <div class="output">
+        Bop
+    </div>
+    <script>
+        const form = document.querySelector("form")
+        const output = document.querySelector(".output")
+        const city = document.querySelector("#city")
+        const state = document.querySelector("#state")
+        const zip = document.querySelector("#zip")
+
+        const onSubmit = async (e) => {
+            const zipCode = zip.value
+            let json;
+            try {
+                const resp = await fetch(`https://geocode.maps.co/search?q=${zipCode}+US`)
+                json = await resp.json()
+            } catch (e) {
+                output.style.display = "block"
+                output.style.color = "#f00"
+                output.textContent = "An unexpected fetching error occurred."
+                // probably temporarily rate-limited.
+                return
+            }
+
+            console.log(json)
+
+            const place = json[0]
+            const display_name = place.display_name
+            const address = display_name.split(", ")
+
+            console.log(address)
+
+            city.value = address[0]
+            state.value = address[2]
+        }
+
+        document.querySelector("input[type=button]").addEventListener("click", onSubmit)
+        /*
+             Make sure your cors extension is on.
+             query select all the inputs and store them in a list
+             add an event listener to the button
+             When the button is clicked
+             call an async function
+             the async function will do the following:
+                 fetch a location from `https://geocode.maps.co/search?q=02724+US`
+                 (The zip code in the url should come from the zip area in the form field)
+                 console.log the returned data
+                 You will see a `display_name` that contains a comma separated address. 
+                 Use the Array Object's split() method to return an array containing each address item. 
+ 
+                 console.log the new array that was returned from the split() There should be five items in it.
+ 
+                 finally, populate the city and state text boxes with the city and state that are in the new array
+         */
+    </script>
+</body>
+
+</html>

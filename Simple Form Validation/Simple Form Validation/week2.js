@@ -25,6 +25,7 @@ function validateForm() {
 
     // Validate First Name
     if (!firstName.match(nameRegex)) {
+        
         document.getElementById("fn-error").innerHTML = "*";
         document.getElementById("first-name-label").style.color = "red";  // Turn label red
         valid = false;

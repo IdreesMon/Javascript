@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1</title>
+    <style>
+        main {
+            width: 300px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 100px 100px;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+    </main>
+    <script>
+        var peeps = [
+            { name: `Jay`, age: 43 },
+            { name: `Freddy`, age: 26 },
+            { name: `Mr T`, age: 71 },
+            { name: `Gucci Mane`, age: 12 },  // because he loves JavaScript - Nathan July 12th 2024
+            { name: `KJ`, age: 9 }
+        ]
+
+        peeps.sort((a, b) => (b.age - a.age))
+
+        const main = document.querySelector("main")
+
+        for (const peep of peeps) {
+            const row = document.createElement("div") 
+            row.setAttribute("class", "row")
+            row.style.color = peep.age < 21 ? "blue" : "red"
+
+            for (const value of Object.values(peep)) {
+                const div = document.createElement("div")
+                const textNode = document.createTextNode(String(value))
+                div.appendChild(textNode)
+                row.appendChild(div)
+            }
+
+            main.appendChild(row)
+        }
+
+        /*
+         sort the array in descending order
+         This will help https://www.javascripttutorial.net/array/javascript-sort-an-array-of-objects/
+         HINT: b.prop-a.prop
+ 
+         select the <main> element
+         loop through the array
+             add a div for each person
+             give the row a class of `row` using the setAttribute function
+             loop through the properties of the object in the array
+             add divs to each row for the name and age properties of each object in the array
+             make the names and ages show up in the divs
+             Example: 
+                 Mr T.   71
+                 Jay     43
+                 Freddy  26
+                 etc.
+             (The css will format this as a grid)
+             
+             if an person's age is under 21 make their row text color blue
+             otherwise make the row's text color red
+        */
+    </script>
+    <script>
+
+
+    </script>
+</body>
+
+</html>

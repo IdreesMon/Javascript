@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1</title>
+    <style>
+        .output {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 64px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label for="name">What is your name?</label>
+        <input type="text" name="name" placeholder="type your name">
+        <button id="submit">Submit</button>
+    </form>
+    <div class="output">
+        Bop
+    </div>
+    <script>
+        const submit = document.querySelector("#submit")
+        const text = document.querySelector("input[type=text]")
+        const output = document.querySelector(".output")
+        const form = document.querySelector("form")
+
+        const onSubmit = (e) => {
+            e.preventDefault()
+            const value = text.value
+
+            if (/([^A-Za-z\s]+)/.test(value)) {
+                output.style.display = "block"
+                output.style.color = "#f00"
+                output.textContent = "Please use letters only."
+            } else if (/([A-Za-z]+)/.test(value)) {
+                form.style.display = "none"
+                output.style.display = "block"
+                output.style.color = "#000"
+                output.textContent = `Hello, ${value}. Welcome to the final exam!`
+            }
+        }
+
+        form.addEventListener("submit", onSubmit)
+        /*
+             When the button is clicked
+             Use RegEx to ensure that there are only letters and spaces in the text box
+             If there are numbers or special characters display the output 
+                 add an error message to the output stating: `Please use letters only.`
+                 change the output color to `#f00`
+             If there are only letters.
+                 hide the form
+                 change the output color to `#000`
+                 display the output
+                 add text to the output that says:
+                 "Hello, <the typed name>. Welcome to your final exam!"
+         */
+    </script>
+</body>
+
+</html>
